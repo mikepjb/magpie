@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/url"
 	"os"
 
 	"github.com/ChimeraCoder/anaconda"
@@ -13,6 +14,15 @@ var (
 	consumerSecret    = getenv("TWITTER_CONSUMER_SECRET")
 	accessToken       = getenv("TWITTER_ACCESS_TOKEN")
 	accessTokenSecret = getenv("TWITTER_ACCESS_TOKEN_SECRET")
+	twitterAccounts   = []string{
+		"edlatimore",
+		"AJA_Cortes",
+		"ROGUEWEALTH",
+		"TellYourSonThis",
+		"AndraZaharia",
+		"nntaleb",
+		"joserosado",
+	}
 )
 
 func getenv(name string) string {
@@ -31,10 +41,20 @@ func main() {
 	log := &logger{logrus.New()}
 	api.SetLogger(log)
 
-	searchResult, _ := api.GetSearch("golang", nil)
-	for _, tweet := range searchResult.Statuses {
+	tweets, _ := api.GetUserTimeline(url.Values{
+		"screen_name":     []string{"mikepjb"},
+		"exclude_replies": []string{"true"},
+	})
+
+	for _, tweet := range tweets {
+		fmt.Println(tweet.RetweetCount, tweet.FavoriteCount)
 		fmt.Println(tweet.Text)
 	}
+
+	// searchResult, _ := api.GetSearch("@mikepjb", nil)
+	// for _, tweet := range searchResult.Statuses {
+	// 	fmt.Println(tweet.Text)
+	// }
 }
 
 type logger struct {
