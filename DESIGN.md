@@ -4,6 +4,12 @@ A twitter bot that will:
   - [ ] markov generate new content
   - [ ] retweet popular tweets by set of users
     - [ ] retweet with an additive message
+  - [ ] find favoured subject tweets
+    - [ ] email me about them so that I can follow up...
+    - [ ] UX
+    - [ ] Fitness
+    - [ ] Cooking
+    - [ ] Photography
   - [ ] breakdown my blog posts and post quotes
     - [ ] blog served using json
   - [ ] asks a question
